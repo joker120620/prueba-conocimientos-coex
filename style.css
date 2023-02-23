@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Rubik', sans-serif;
+    background-color: rgb(198,227,236,0.486);
+    display: flex;
+}
+.barra_nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:20px;
+    width: fit-content;
+    padding: 80px 70px 20px 70px ;
+    height: 90vh;
+    margin: 40px 40px 40px 40px;
+    font-size: 20px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: white;
+}
+.img_nav{
+    width: 100px;
+    height: 100px;
+}
+.list_nav{
+    margin-top: 40px;
+
+}
+.item_nav_list:hover{
+    cursor:pointer;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    padding: 10px;
+    border-radius: 15px;
+    
+}
+.item_nav_list{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 18px;
+    list-style: none;
+    margin-top: 15px;
+    padding: 10px;
+}
+.btn_nav{
+    font-family: 'Rubik', sans-serif;
+    padding: 10px 15px 10px 15px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    color:white;
+    text-decoration: none;
+    background-color: rgb(97, 32, 158);
+}
+.text_title_nav{
+    color: rgb(97, 32, 158);
+    font-weight: 200;
+    
+}
+.seccion_active{
+    display: flex;
+    margin: 40px 40px 40px 80px;
+    flex-direction: column;
+    width: 140vh;
+    gap:40px;
+}
+.seccion_null{
+    display: none;
+}
+.title_section{
+    width: 100%;
+    color: rgb(97, 32, 158);
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+    height: 80px;
+    padding-top: 25px;
+    font-size: 30px;
+}
+.com_secc_active{
+    display: flex;
+    justify-content: center;
+    gap:100px;
+
+}
+.div_sec_1_1{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+    height: fit-content;
+    border-radius: 15px;
+    padding: 20px 40px 10px 40px;
+}
+.con_div_sec_1{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    
+}
+.title_sec_1{
+    font-size: 18px;
+    font-weight: 300;
+}
+.text_sec_act{
+    font-size: 25px;
+    color: rgb(97, 32, 158);
+}
+.div_sec_1_2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+    height: fit-content;
+    border-radius: 15px;
+    padding: 20px 40px 10px 40px;
+}
+.com_secc_2{
+    background-color: white;
+    border-radius: 15px;
+}
+.inp_buscar{
+    height: 30px;
+    border-radius: 6px;
+    border: solid 1px gray; 
+    padding: 0px 5px 0px 5px;
+    text-align: center;
+}
+
+.options_secc_2{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 40px 10px 40px;
+}
+.formulario_registro{
+    display: none;
+    
+}
+.item_form{
+    width: 100px;
+    border: solid 1px ;
+}
+.cli_mostrar{
+  padding: 30px ;
+  width: 100%;
+  color: gray;
+  text-align: center ;
+} 
+.title_table{
+  width: 300px;
+  height: 20px ;
+  font-size: 10px ;
+  table-layout: 50px;
+  padding: 5px 5px 10px 10px ;
+  background-color: rgb(97, 32, 158);
+  border: solid 1px white;
+  color: white ;
+}
+.div_btn_tabla{
+  display: flex ;
+  justify-content: center ;
+}
+.btn_tabla{
+  width: 30px;
+  height: 30px;
+}
