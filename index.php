@@ -330,7 +330,7 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
         <section id="sec_3"class="seccion_null">
             <h2 class="title_section">Creditos</h2>
             <div>
-            <button class="btn_nav">Atras</button>
+            <button onclick="mostrar(1)" class="btn_nav">Atras</button>
             </div>
             <div class="com_secc_2">
             
