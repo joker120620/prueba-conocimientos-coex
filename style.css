@@ -47,16 +47,6 @@ body{
     margin-top: 15px;
     padding: 10px;
 }
-.btn_sea{
-  font-family: 'Rubik', sans-serif;
-  padding: 10px 15px 10px 15px;
-  font-size: 15px;
-  border: none;
-  border-radius: 6px;
-  color:white;
-  text-decoration: none;
-  background-color: rgb(97, 32, 158);
-}
 .btn_nav{
     font-family: 'Rubik', sans-serif;
     padding: 10px 15px 10px 15px;
@@ -144,7 +134,6 @@ body{
     border: solid 1px gray; 
     padding: 0px 5px 0px 5px;
     text-align: center;
-    font-family: 'Rubik', sans-serif;
 }
 
 .options_secc_2{
@@ -197,6 +186,7 @@ body{
   width: fit-content;
   padding: 20px;
   border-radius: 15px ;
+  
   margin: auto ;
 }
 .text_reg{
@@ -209,13 +199,6 @@ body{
 .input_form_reg{
   color:gray;
   width:150px;
-  margin-top: 10px ;
-  height:30px ;
-  padding: 5px ;
-}
-.input_form_reg_exte{
-  color:gray;
-  width:300px;
   margin-top: 10px ;
   height:30px ;
   padding: 5px ;
@@ -243,20 +226,8 @@ body{
 }
 .btn_reg{
   
-  
-}
-.btn_cred {
   padding: 20px ;
-  display: flex ;
-  justify-content:center ;
-  width:700px;
 }
 .modal_oculto {
   display: none;
-}
-.alert{
-  width: 300px;
-  display:flex ;
-  flex-direction:column ;
-  align-items: center ;
 }

@@ -1,13 +1,7 @@
 <?php
 include("./conec.php");
 mysqli_select_db($conn, $database);
-if(isset($_GET['s'])){
-  $s=$_GET['s'];
-  $consulta ="SELECT * FROM tbl_cliente WHERE nom_cli LIKE '%$s%' OR cc_cli LIKE '%$s%' OR ape_cli LIKE '%$s%'; " ;
-}else {
-  $consulta ="SELECT * FROM tbl_cliente"; 
-}
-
+$consulta ="SELECT * FROM tbl_cliente";
 $resultado = mysqli_query($conn, $consulta);
 $sql = "SELECT COUNT(*) total FROM tbl_cliente";
 $resultado2= mysqli_query($conn, $sql);
@@ -15,10 +9,7 @@ $resultado2 = mysqli_fetch_assoc($resultado2);
 $sql2 = "SELECT COUNT(*) total FROM tbl_credito";
 $resultado3= mysqli_query($conn, $sql2);
 $resultado3 = mysqli_fetch_assoc($resultado3);
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
@@ -29,7 +20,6 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
     <title>PRUEBA</title>
 </head>
 <body>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <header>
         <nav>
             <div class="barra_nav">
@@ -112,14 +102,8 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
             <h2 class="title_section">Clientes</h2>
             <div class="com_secc_2">
                 <div class="options_secc_2">
-                  <form action="./buscarper.php" >
-                    <input type="text" class="inp_buscar" placeholder="Nombre, NIT, o CC " name="itemBuscar" required> 
-                    <button class="btn_nav" type="submit" ><svg class="btn_search" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg></button>
-                  </form>
-                    
-                    <button onclick="abrirModal(1, 0)" class="btn_nav">Crear cliente</button>
+                    <input type="text" class="inp_buscar" placeholder="Nombre, NIT, o CC " > 
+                    <button onclick="abrirModal()" id="abrirModal" class="btn_nav">Crear cliente</button>
                 </div>
               
                 <div class="cli_mostrar">
@@ -140,30 +124,27 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
   </tr>
 
 
-                 <?php 
-                 $cont=1;
-                 while ($fila = mysqli_fetch_array($resultado)) {
+                 <?php while ($fila = mysqli_fetch_array($resultado)) {
                   ?>
                      <tr class="text_table">
-    <td id="nom_E<?php echo $cont?>" class="text_table"><?php echo $fila['nom_cli'];?></td>
-    <td id="ape_E<?php echo $cont?>" class="text_table"><?php echo $fila['ape_cli'];?></td>
-    <td id="cc_E<?php echo $cont?>" class="text_table"><?php echo $fila['cc_cli'];?></td>
-    <td id="dir_E<?php echo $cont?>" class="text_table"><?php echo $fila['dir_cli'];?></td>
-    <td id="ciu_E<?php echo $cont?>" class="text_table"><?php echo $fila['ciu_cli'];?></td>
-    <td id="tel_E<?php echo $cont?>" class="text_table"><?php echo $fila['tel_cli'];?></td>
-    <td id="cup_E<?php echo $cont?>" class="text_table"><?php echo $fila['cup_cli'];?></td>
-    <td id="id_E<?php echo $cont?>" class="seccion_null"><?php echo $fila['id_cli'];?></td>
-    <td id="est_E<?php echo $cont?>" class="text_table"><?php if($fila['est_cli']==1){echo "Activo";}else{echo "Inactivo";} ;?></td>
-    <td class="div_btn_tabla"><div onclick="abrirModal(2,<?php echo $cont; ?>)" class="btn_tabla"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+    <td class="text_table"><?php echo $fila['nom_cli'];?></td>
+    <td class="text_table"><?php echo $fila['ape_cli'];?></td>
+    <td class="text_table"><?php echo $fila['cc_cli'];?></td>
+    <td class="text_table"><?php echo $fila['dir_cli'];?></td>
+    <td class="text_table"><?php echo $fila['ciu_cli'];?></td>
+    <td class="text_table"><?php echo $fila['tel_cli'];?></td>
+    <td class="text_table"><?php echo $fila['cup_cli'];?></td>
+    <td class="text_table"><?php if($fila['est_cli']==1){echo "Activo";}else{echo "Inactivo";} ;?></td>
+    <td class="div_btn_tabla"><div class="btn_tabla"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
 </svg></div>
-<div class="btn_tabla"><a href="./deleteUser.php/?id=<?php echo $fila['id_cli'] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+<div class="btn_tabla"><a href="./deleteUser.php/<?php echo $fila['id_cli'] ?>"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
   <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
 </svg></a></div></td>
   </tr>
   <?php
-  $cont++;
+                   
                    
 };
 ?>
@@ -182,10 +163,10 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
         
         
         
-        <section class="modal_oculto" id="modal1">
+        <section class="modal_oculto" id="modal">
            <h2 class="title_section">Nuevo Cliente</h2>
               <div class="options_secc_2">
-                <button onclick="cerrarModal(1,2)" id="btn_atras"class="btn_nav">Atras</button>
+                <button onclick="cerrarModal(2)" id="btn_atras"class="btn_nav">Atras</button>
               </div>
               <p class="text_reg">Datos personales</p>
           <div class="con_sec_reg">
@@ -202,7 +183,7 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
                   <input class="input_form_reg" type="text" name="apellidoClie" placeholder="Apellido" required></div>
                   <div class="cont_input">
                     <label for="" >Nit/CC</label>
-                  <input class="input_form_reg" type="number" name="nitClie" placeholder="NIT/CC" required>
+                  <input class="input_form_reg" type="text" name="nitClie" placeholder="NIT/CC" required>
                   </div>
                   <div class="cont_input">
                     <label for="" >Dirección</label>
@@ -235,82 +216,7 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
                   </div>
                   <div class="cont_input">
                     <label for="" >Dia de gracia</label>
-                  <input required class="input_form_reg" type="date" name="diaDClie" placeholder="Dia de gracia">
-                  </div>
-                 
-                </div>
-                
-
-              <div class="btn_reg">
-                <button class="btn_nav">Guardar Cambios </button>
-              </div>
-            </form>
-              
-            </div> 
-        </section>
-        
-        
-        
-        <section class="modal_oculto" id="modal2">
-           <h2 class="title_section">Detalles de Cliente</h2>
-              <div class="options_secc_2">
-                <button onclick="cerrarModal(2, 2)" id="btn_atras"class="btn_nav">Atras</button>
-              </div>
-              <p class="text_reg">Datos personales</p>
-          <div class="con_sec_reg">
-             
-              
-              <form class="div_registro" action="actualizarControler.php" method="post">
-                <div class="con_for_1">
-                  <div class="cont_input">
-                    <label for="" >Nombre</label>
-                  <input class="input_form_reg" id="nom_rep" type="text" name="nombreCliea" placeholder="Nombre" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Apellido</label>
-                  <input id="ape_rep" class="input_form_reg" type="text" name="apellidoCliea" placeholder="Apellido" required></div>
-                  <div class="cont_input">
-                    <label for="" >Nit/CC</label>
-                  <input id="nit_rep" class="input_form_reg" type="text" name="nitCliea" placeholder="NIT/CC" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Dirección</label>
-                  <input id="dir_rep" class="input_form_reg" type="text" name="direccionCliea" placeholder="Dirección" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Ciudad</label>
-                  <input id="ciu_rep" class="input_form_reg" type="text" name="ciudadCliea" placeholder="Ciudad" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Telefono</label>
-                  <input id="tel_rep" required class="input_form_reg" type="tel" name="telefonoCliea" placeholder="Telefono">
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Estado de Crédito</label>
-                    <select name="est_clia" required class="input_form_reg" >
-                      <option value="1">Activo</option>
-                      <option value="0">inactivo</option>
-                    </select>
-                  </div>
-                  
-                  
-                  </div>
-                <div class="con_for_2">
-                  <div class="cont_input">
-                   <label for="" >Cupo</label>
-                  <input id="cup_rep" required class="input_form_reg" type="text" name="cupoCliea"placeholder="Cupo">
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >
-                    Cupo disponible</label>
-                  <input id="cupD_rep" required class="input_form_reg" type="text" name="cupoDCliea" placeholder="Cupo Disponible ">
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Dia de gracia</label>
-                  <input id="dia_rep" required class="input_form_reg" type="date" name="diaDCliea" placeholder="Dia de gracia">
-                  </div>
-                  <div class="seccion_null" >
-                  <input id="id_rep" type="text" name="idCliea">
+                  <input required class="input_form_reg" type="text" name="diaDClie" placeholder="Dia de gracia">
                   </div>
                 </div>
                 
@@ -322,9 +228,6 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
               
             </div> 
         </section>
-        
-        
-        
 
 
         <section id="sec_3"class="seccion_null">
@@ -335,80 +238,7 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
             <div class="com_secc_2">
             
                 <div class="options_secc_2">
-              
-          <div class="con_sec_reg">
-             
-              
-              <form class="div_registro" action="registrarCredito.php" method="post">
-                <div class="con_for_Credi">
-                  <div class="cont_input">
-                    <label for="" >Pagaré   Nro</label>
-                  <input class="input_form_reg_exte" type="number" name="nPagare" placeholder="Nro Pagare" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Monto del Credito</label>
-                  <input class="input_form_reg_exte" type="number" name="montoC" placeholder="Cantidad" required></div>
-                  <div class="cont_input">
-                    <label for="" >Cuota Inicial</label>
-                  <input class="input_form_reg_exte" type="number" name="cuoIniC" placeholder="Cantidad" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >tasa de interés</label>
-                  <input class="input_form_reg_exte" type="text" name="tasaInC" placeholder="Dirección" required>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Fecha de Desembolso</label>
-                  <input class="input_form_reg_exte" type="date" name="fechaDC" placeholder="dd/mm/aaaa" required>
-                  </div>
-                 </div>
-                 <div class="con_for_2">
-                  <div class="cont_input">
-                    <label for="" >cuotas Mensuales</label>
-                  <input required class="input_form_reg_exte" type="number" name="coutasC" placeholder="Cuotas">
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Cedula  del Cliente</label>
-                  <input id="cedu" required class="input_form_reg_exte" type="number" name="ccC" placeholder="Cedula">
-                  </div>
-                  
-                  
-                  
-                
-                  <div class="cont_input">
-                   <label for="" >Cliente</label>
-                  <select id="seleNom" required class="input_form_reg_exte" name="nomCC">
-                                        <option>Selecione</option>
-                    <?php
-                    $sqlCli ="SELECT * FROM tbl_cliente"; 
-                    $result = mysqli_query($conn, $sqlCli); 
-                    while ($valores = mysqli_fetch_array($result)) {
-                      echo "<option data-nit=".$valores['cc_cli']." value=".$valores['id_cli'].">".$valores['nom_cli']."</option>";
-          }
-        ?>
-                 
                     
-                   
-                  </select>
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >
-                    Fecha de Crédito</label>
-                  <input required class="input_form_reg_exte" type="date" name="fechaCredi" placeholder="dd/mm/aaaa">
-                  </div>
-                  <div class="cont_input">
-                    <label for="" >Observaciones</label>
-                  <textarea required class="input_form_reg_exte" name="obC" placeholder=""></textarea>
-                  </div>
-                 
-                </div>
-                
-
-              <div class="btn_cred">
-                <button class="btn_nav">Crear</button>
-              </div>
-            </form>
-              
-            </div> 
                 </div>
             </div>
             
@@ -420,36 +250,3 @@ $resultado3 = mysqli_fetch_assoc($resultado3);
   
 </body>
 </html>
-<?php
-if(isset($_GET['x'])){
-  $x=$_GET['x'] ;
-  echo "<script>mostrar($x)</script>";
-};
-if(isset($_GET['m'])){
-  $m=$_GET['m'] ;
-  switch ($m){
-    case 1:
-    echo '<script>swal({title:"Usuario Guardado Correctamente", icon: "success", 
-      className: "alert"} );</script>' ;
-      break;
-    case 2:
-      echo '<script>swal({title:"Usuario Eliminado", icon: "warning", 
-      className: "alert"} );</script>' ;
-      break;
-    case 3:
-    echo '<script>swal({title:"Usuario Actualizado", icon: "success", 
-      className: "alert"} );</script>' ;
-      break;
-     case 4:
-    echo '<script>swal({title:"Crédito Creado", icon: "success", 
-      className: "alert"} );</script>' ;
-      break;
-     case 5:
-    echo '<script>swal({title:"Error", icon: "error", 
-      className: "alert"} );</script>' ;
-      break; 
-      
-  }
-  
-};
-?>
